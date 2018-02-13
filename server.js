@@ -6,6 +6,7 @@ const app = express();
 const session = require('express-session');
 const mongoose = require('mongoose');
 
+const api = require('./server/routes/api');
 
 // Parsers
 app.use(bodyParser.json());
@@ -13,6 +14,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'dist')));
+
+// Set our api routes
+app.use('/api', api);
 
 // Angular index file..
 app.get('*', (req, res) => {
